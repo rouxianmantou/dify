@@ -1,3 +1,5 @@
+Try to fix WeCom bug.
+
 ![cover-v5-optimized](https://github.com/langgenius/dify/assets/13230914/f9e19af5-61ba-4119-b926-d10c4c06ebab)
 
 <p align="center">
