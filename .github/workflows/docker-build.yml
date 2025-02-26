@@ -1,12 +1,13 @@
 name: Build docker image
 
-on:
-  pull_request:
-    branches:
-      - "0.15.3-custom"
-    paths:
-      - api/Dockerfile
-      - web/Dockerfile
+on: workflow_dispatch
+# on:
+#   pull_request:
+#     branches:
+#       - "0.15.3-custom"
+#     paths:
+#       - api/Dockerfile
+#       - web/Dockerfile
 
 concurrency:
   group: docker-build-${{ github.head_ref || github.run_id }}
