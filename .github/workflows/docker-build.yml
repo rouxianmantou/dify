@@ -19,18 +19,9 @@ jobs:
     strategy:
       matrix:
         include:
-          # - service_name: "api-amd64"
-          #   platform: linux/amd64
-          #   context: "api"
-          # - service_name: "api-arm64"
-          #   platform: linux/arm64
-          #   context: "api"
           - service_name: "web-amd64"
             platform: linux/amd64
             context: "web"
-          # - service_name: "web-arm64"
-          #   platform: linux/arm64
-          #   context: "web"
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -46,3 +37,11 @@ jobs:
           platforms: ${{ matrix.platform }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          tags: dify-web:0.15.3-custom
+          outputs: type=oci,dest=/tmp/image.tar
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: /tmp/image.tar
