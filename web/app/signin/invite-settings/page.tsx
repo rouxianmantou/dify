@@ -66,17 +66,25 @@ export default function InviteSettingsPage() {
   if (!checkRes)
     return <Loading />
   if (!checkRes.is_valid) {
-    return <div className="flex flex-col md:w-[400px]">
-      <div className="w-full mx-auto">
-        <div className="mb-3 flex justify-center items-center w-14 h-14 rounded-2xl border border-components-panel-border-subtle shadow-lg text-2xl font-bold">🤷‍♂️</div>
-        <h2 className="title-4xl-semi-bold">{t('login.invalid')}</h2>
+    return (
+      <div className="flex flex-col md:w-[400px]">
+        <div className="w-full mx-auto">
+          <div className="mb-3 flex justify-center items-center w-14 h-14 rounded-2xl border border-components-panel-border-subtle shadow-lg text-2xl font-bold">
+            🤷‍♂️
+          </div>
+          <h2 className="title-4xl-semi-bold">{t('login.invalid')}</h2>
+        </div>
+        <div className="w-full mx-auto mt-6">
+          <Button
+            variant="primary"
+            className="w-full !text-sm">
+            <a href="/apps">
+              {t('login.explore')}
+            </a>
+          </Button>
+        </div>
       </div>
-      <div className="w-full mx-auto mt-6">
-        <Button variant='primary' className='w-full !text-sm'>
-          <a href="https://dify.ai">{t('login.explore')}</a>
-        </Button>
-      </div>
-    </div>
+    );
   }
 
   return <div className='flex flex-col gap-3'>

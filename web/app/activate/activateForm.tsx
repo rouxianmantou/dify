@@ -39,29 +39,36 @@ const ActivateForm = () => {
   })
 
   return (
-    <div className={
-      cn(
+    <div
+      className={cn(
         'flex flex-col items-center w-full grow justify-center',
         'px-6',
         'md:px-[108px]',
-      )
-    }>
+      )}>
       {!checkRes && <Loading />}
       {checkRes && !checkRes.is_valid && (
         <div className="flex flex-col md:w-[400px]">
           <div className="w-full mx-auto">
-            <div className="mb-3 flex justify-center items-center w-20 h-20 p-5 rounded-[20px] border border-gray-100 shadow-lg text-[40px] font-bold">🤷‍♂️</div>
-            <h2 className="text-[32px] font-bold text-gray-900">{t('login.invalid')}</h2>
+            <div className="mb-3 flex justify-center items-center w-20 h-20 p-5 rounded-[20px] border border-gray-100 shadow-lg text-[40px] font-bold">
+              🤷‍♂️
+            </div>
+            <h2 className="text-[32px] font-bold text-gray-900">
+              {t('login.invalid')}
+            </h2>
           </div>
           <div className="w-full mx-auto mt-6">
-            <Button variant='primary' className='w-full !text-sm'>
-              <a href="https://dify.ai">{t('login.explore')}</a>
+            <Button
+              variant="primary"
+              className="w-full !text-sm">
+              <a href="/apps">
+                {t('login.explore')}
+              </a>
             </Button>
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }
 
 export default ActivateForm

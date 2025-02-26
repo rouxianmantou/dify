@@ -14,7 +14,7 @@ import type {
   Feedback,
 } from '../types'
 import { CONVERSATION_ID_INFO } from '../constants'
-import { getPrevChatList, getProcessedInputsFromUrlParams } from '../utils'
+import { getProcessedInputsFromUrlParams } from '../utils'
 import {
   fetchAppInfo,
   fetchAppMeta,
@@ -76,11 +76,17 @@ export const useEmbeddedChatbot = () => {
   const { data: appChatListData, isLoading: appChatListDataLoading } = useSWR(chatShouldReloadKey ? ['appChatList', chatShouldReloadKey, isInstalledApp, appId] : null, () => fetchChatList(chatShouldReloadKey, isInstalledApp, appId))
 
   const appPrevChatList = useMemo(
-    () => (currentConversationId && appChatListData?.data.length)
-      ? getPrevChatList(appChatListData.data)
-      : [],
+    () => [],
     [appChatListData, currentConversationId],
   )
+
+    // const appPrevChatList = useMemo(
+    //   () =>
+    //     currentConversationId && appChatListData?.data.length
+    //       ? getPrevChatList(appChatListData.data)
+    //       : [],
+    //   [appChatListData, currentConversationId],
+    // );
 
   const [showNewConversationItemInList, setShowNewConversationItemInList] = useState(false)
 
@@ -270,7 +276,12 @@ export const useEmbeddedChatbot = () => {
     }
     else if (currentConversationId) {
       handleConversationIdInfoChange('')
-      setShowConfigPanelBeforeChat(true)
+      if (checkInputsRequired()){
+        setShowConfigPanelBeforeChat(false);
+      } else{
+        setShowConfigPanelBeforeChat(true);
+      }
+
       setShowNewConversationItemInList(true)
       handleNewConversationInputsChange({})
     }
