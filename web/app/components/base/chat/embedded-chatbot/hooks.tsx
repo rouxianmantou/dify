@@ -272,18 +272,12 @@ export const useEmbeddedChatbot = () => {
     setNewConversationId('')
 
     if (showNewConversationItemInList) {
-      handleChangeConversation('')
-    }
-    else if (currentConversationId) {
-      handleConversationIdInfoChange('')
-      if (checkInputsRequired()){
-        setShowConfigPanelBeforeChat(false);
-      } else{
-        setShowConfigPanelBeforeChat(true);
-      }
-
-      setShowNewConversationItemInList(true)
-      handleNewConversationInputsChange({})
+      handleChangeConversation('');
+    } else if (currentConversationId) {
+      handleConversationIdInfoChange('');
+      setShowConfigPanelBeforeChat(!!appParams?.user_input_form?.length);
+      setShowNewConversationItemInList(true);
+      handleNewConversationInputsChange({});
     }
   }, [handleChangeConversation, currentConversationId, handleConversationIdInfoChange, setShowConfigPanelBeforeChat, setShowNewConversationItemInList, showNewConversationItemInList, handleNewConversationInputsChange])
 
