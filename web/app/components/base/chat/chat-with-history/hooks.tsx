@@ -122,7 +122,7 @@ export const useChatWithHistory = (installedAppInfo?: InstalledApp) => {
       })
     }
   }, [appId, conversationIdInfo, setConversationIdInfo])
-  const [showConfigPanelBeforeChat, setShowConfigPanelBeforeChat] = useState(false)
+  const [showConfigPanelBeforeChat, setShowConfigPanelBeforeChat] = useState(true)
 
   const [newConversationId, setNewConversationId] = useState('')
   const chatShouldReloadKey = useMemo(() => {
@@ -313,7 +313,7 @@ export const useChatWithHistory = (installedAppInfo?: InstalledApp) => {
     }
     else if (currentConversationId) {
       handleConversationIdInfoChange('')
-      setShowConfigPanelBeforeChat(!!appParams?.user_input_form?.length);
+      setShowConfigPanelBeforeChat(!!appParams?.user_input_form?.length)
       setShowNewConversationItemInList(true)
       handleNewConversationInputsChange({})
     }

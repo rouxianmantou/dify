@@ -59,7 +59,7 @@ export const useEmbeddedChatbot = () => {
       })
     }
   }, [appId, conversationIdInfo, setConversationIdInfo])
-  const [showConfigPanelBeforeChat, setShowConfigPanelBeforeChat] = useState(false)
+  const [showConfigPanelBeforeChat, setShowConfigPanelBeforeChat] = useState(true)
 
   const [newConversationId, setNewConversationId] = useState('')
   const chatShouldReloadKey = useMemo(() => {
@@ -80,13 +80,13 @@ export const useEmbeddedChatbot = () => {
     [appChatListData, currentConversationId],
   )
 
-    // const appPrevChatList = useMemo(
-    //   () =>
-    //     currentConversationId && appChatListData?.data.length
-    //       ? getPrevChatList(appChatListData.data)
-    //       : [],
-    //   [appChatListData, currentConversationId],
-    // );
+  // const appPrevChatList = useMemo(
+  //   () =>
+  //     currentConversationId && appChatListData?.data.length
+  //       ? getPrevChatList(appChatListData.data)
+  //       : [],
+  //   [appChatListData, currentConversationId],
+  // );
 
   const [showNewConversationItemInList, setShowNewConversationItemInList] = useState(false)
 
@@ -272,12 +272,13 @@ export const useEmbeddedChatbot = () => {
     setNewConversationId('')
 
     if (showNewConversationItemInList) {
-      handleChangeConversation('');
-    } else if (currentConversationId) {
-      handleConversationIdInfoChange('');
-      setShowConfigPanelBeforeChat(!!appParams?.user_input_form?.length);
-      setShowNewConversationItemInList(true);
-      handleNewConversationInputsChange({});
+      handleChangeConversation('')
+    }
+    else if (currentConversationId) {
+      handleConversationIdInfoChange('')
+      setShowConfigPanelBeforeChat(!!appParams?.user_input_form?.length)
+      setShowNewConversationItemInList(true)
+      handleNewConversationInputsChange({})
     }
   }, [handleChangeConversation, currentConversationId, handleConversationIdInfoChange, setShowConfigPanelBeforeChat, setShowNewConversationItemInList, showNewConversationItemInList, handleNewConversationInputsChange])
 
