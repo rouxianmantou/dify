@@ -57,15 +57,16 @@ jobs:
 
       - name: Export digest
         run: |
-          mkdir -p /tmp/digests
-          docker save -o "/tmp/digests/${{ matrix.image_name_env }}-1.0.0-custom.tar" "${{ matrix.image_name_env }}:1.0.0-custom"
+          mkdir -p "/tmp/digests-${{ matrix.image_name_env }}-1.0.0-custom"
+          docker save -o "/tmp/digests-${{ matrix.image_name_env }}-1.0.0-custom/${{ matrix.image_name_env }}-1.0.0-custom.tar" "${{ matrix.image_name_env }}:1.0.0-custom"
           digest="${{ steps.build.outputs.digest }}"
-          touch "/tmp/digests/${digest#sha256:}"
+          touch "/tmp/digests-${{ matrix.image_name_env }}-1.0.0-custom/${digest#sha256:}"
 
       - name: Upload digest
         uses: actions/upload-artifact@v4
         with:
-          path: /tmp/digests/*
+          name: "${{ matrix.image_name_env }}-1.0.0-custom"
+          path: "/tmp/digests-${{ matrix.image_name_env }}-1.0.0-custom/*"
           if-no-files-found: error
           retention-days: 1
 
