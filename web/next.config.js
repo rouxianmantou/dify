@@ -14,6 +14,12 @@ const withMDX = require('@next/mdx')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: [
+    '@tanstack/react-query',
+    '@tanstack/query-core',
+    'mermaid',
+    'marked',
+  ],
   webpack: (config, { dev, isServer }) => {
     config.plugins.push(codeInspectorPlugin({ bundler: 'webpack' }))
     return config
