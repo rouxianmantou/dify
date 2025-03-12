@@ -59,7 +59,7 @@ jobs:
 
       - name: Export digest
         run: |
-          mmkdir -p "/tmp/digests-${{ matrix.image_name_env }}-${{ matrix.version }}-custom"
+          mkdir -p "/tmp/digests-${{ matrix.image_name_env }}-${{ matrix.version }}-custom"
           docker save -o "/tmp/digests-${{ matrix.image_name_env }}-${{ matrix.version }}-custom/${{ matrix.image_name_env }}-${{ matrix.version }}-custom.tar" "${{ matrix.image_name_env }}:${{ matrix.version }}-custom"
           digest="${{ steps.build.outputs.digest }}"
           touch "/tmp/digests-${{ matrix.image_name_env }}-${{ matrix.version }}-custom/${digest#sha256:}"
