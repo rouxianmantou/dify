@@ -3,14 +3,14 @@ import { useChatWithHistoryContext } from './context'
 import Sidebar from './sidebar'
 import AppIcon from '@/app/components/base/app-icon'
 import {
-  Edit05,
+  // Edit05,
   Menu01,
 } from '@/app/components/base/icons/src/vender/line/general'
 
 const HeaderInMobile = () => {
   const {
     appData,
-    handleNewConversation,
+    // handleNewConversation,
   } = useChatWithHistoryContext()
   const [showSidebar, setShowSidebar] = useState(false)
 
@@ -36,12 +36,12 @@ const HeaderInMobile = () => {
             {appData?.site.title}
           </div>
         </div>
-        <div
+        {/* <div
           className='shrink-0 flex items-center justify-center w-8 h-8 rounded-lg'
           onClick={handleNewConversation}
         >
           <Edit05 className='w-4 h-4 text-gray-700' />
-        </div>
+        </div> */}
       </div>
       {
         showSidebar && (
